@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arka Elegancy | Moda e Estilo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="promo-bar">PORTES GRÁTIS EM ENCOMENDAS SUPERIORES A 2.000 MT</div>
+    
+    <header>
+        <div class="header-main">
+            <div class="logo">Arka Elegancy</div>
+            <div class="header-icons">
+                <span>👤</span>
+                <span onclick="toggleCart()">🛒 <span class="cart-count" id="cart-counter">0</span></span>
+            </div>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Pesquisar na Arka Elegancy..." onkeyup="filterProducts()">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">NOVIDADES</a></li>
+                <li><a href="#">VESTIDOS</a></li>
+                <li><a href="#">CONJUNTOS</a></li>
+                <li><a href="#">ACESSÓRIOS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="products-section">
+        <h2 class="section-title">Coleção Exclusiva</h2>
+        <div class="product-grid" id="product-grid">
+            <!-- Produto 1 -->
+            <div class="product-card" data-name="vestido floral" onclick="openZoom('https://unsplash.com', 'Vestido Floral')">
+                <img src="https://unsplash.com" class="product-image" alt="Vestido">
+                <div class="product-info">
+                    <p class="product-name">Vestido Floral Elegance</p>
+                    <div class="product-price">
+                        <span class="current-price">1.500 MT</span>
+                        <button class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart('Vestido Floral', 1500)">+</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Outros produtos seguem o mesmo padrão... -->
+        </div>
+    </section>
+
+    <!-- MODAL DE ZOOM (LUPA) -->
+    <div id="zoom-modal" class="zoom-modal" onclick="closeZoom()">
+        <span class="close-zoom">&times;</span>
+        <div class="zoom-container" onclick="event.stopPropagation()">
+            <div id="zoom-img" class="zoom-img"></div>
+            <p id="zoom-caption"></p>
+        </div>
+    </div>
+
+    <!-- Carrinho e Footer mantêm-se... -->
+    <script src="script.js"></script>
+</body>
+</html>
