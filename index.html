@@ -1,63 +1,51 @@
+<!-- PARTE 1: ESTRUTURA E DESIGN -->
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arka Elegancy | Moda e Estilo</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Arka Elegancy | Interface</title>
+    <style>
+        /* Estilos CSS: Embeleza e organiza visualmente a estrutura */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        .promo-bar { background: #000; color: #fff; text-align: center; padding: 8px; font-size: 11px; }
+        .logo { font-size: 24px; font-weight: bold; text-align: center; padding: 20px; }
+        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 20px; }
+        .product-card { border: 1px solid #ddd; padding: 10px; cursor: pointer; }
+        /* Estilo da Lupa */
+        .zoom-modal { display: none; position: fixed; top: 0; background: rgba(0,0,0,0.9); width: 100%; height: 100%; justify-content: center; align-items: center; z-index: 1000; }
+        .zoom-viewer { width: 400px; height: 400px; background-size: 250%; background-position: center; border: 2px solid white; }
+    </style>
 </head>
 <body>
-    <div class="promo-bar">PORTES GRÁTIS EM ENCOMENDAS SUPERIORES A 2.000 MT</div>
+    <div class="promo-bar">ARKA ELEGANCY - PREÇOS EM MT</div>
+    <div class="logo">Arka Elegancy</div>
     
-    <header>
-        <div class="header-main">
-            <div class="logo">Arka Elegancy</div>
-            <div class="header-icons">
-                <span>👤</span>
-                <span onclick="toggleCart()">🛒 <span class="cart-count" id="cart-counter">0</span></span>
-            </div>
-        </div>
-        <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Pesquisar na Arka Elegancy..." onkeyup="filterProducts()">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#" class="active">NOVIDADES</a></li>
-                <li><a href="#">VESTIDOS</a></li>
-                <li><a href="#">CONJUNTOS</a></li>
-                <li><a href="#">ACESSÓRIOS</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section class="products-section">
-        <h2 class="section-title">Coleção Exclusiva</h2>
-        <div class="product-grid" id="product-grid">
-            <!-- Produto 1 -->
-            <div class="product-card" data-name="vestido floral" onclick="openZoom('https://unsplash.com', 'Vestido Floral')">
-                <img src="https://unsplash.com" class="product-image" alt="Vestido">
-                <div class="product-info">
-                    <p class="product-name">Vestido Floral Elegance</p>
-                    <div class="product-price">
-                        <span class="current-price">1.500 MT</span>
-                        <button class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart('Vestido Floral', 1500)">+</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Outros produtos seguem o mesmo padrão... -->
+    <section class="product-grid">
+        <!-- O HTML fornece a estrutura base dos produtos -->
+        <div class="product-card" onclick="ativarLupa('url_da_imagem.jpg', 'Vestido Silk')">
+            <p>Vestido Silk - 2.500 MT</p>
         </div>
     </section>
 
-    <!-- MODAL DE ZOOM (LUPA) -->
-    <div id="zoom-modal" class="zoom-modal" onclick="closeZoom()">
-        <span class="close-zoom">&times;</span>
-        <div class="zoom-container" onclick="event.stopPropagation()">
-            <div id="zoom-img" class="zoom-img"></div>
-            <p id="zoom-caption"></p>
-        </div>
+    <div id="zoomModal" class="zoom-modal" onclick="this.style.display='none'">
+        <div id="zoomViewer" class="zoom-viewer"></div>
     </div>
-
-    <!-- Carrinho e Footer mantêm-se... -->
-    <script src="script.js"></script>
+<!-- PARTE 2: LÓGICA E INTERATIVIDADE -->
+    <script>
+        /* JavaScript: Adiciona interatividade e dinamismo ao site */
+        function ativarLupa(imgUrl, nome) {
+            const modal = document.getElementById('zoomModal');
+            const viewer = document.getElementById('zoomViewer');
+            modal.style.display = 'flex';
+            viewer.style.backgroundImage = `url(${imgUrl})`;
+            
+            viewer.onmousemove = function(e) {
+                const posX = (e.offsetX / viewer.offsetWidth) * 100;
+                const posY = (e.offsetY / viewer.offsetHeight) * 100;
+                viewer.style.backgroundPosition = `${posX}% ${posY}%`;
+            };
+        }
+    </script>
 </body>
 </html>
