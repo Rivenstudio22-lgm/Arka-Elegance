@@ -10,136 +10,120 @@
         body { background-color: #f7f7f7; color: #222; }
         
         /* CABEÇALHO */
-        .promo-bar { background: #000; color: #fff; text-align: center; padding: 8px; font-size: 11px; font-weight: bold; }
-        header { background: #fff; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #e5e5e5; padding: 15px 4%; }
-        .logo { font-size: 24px; font-weight: 900; text-transform: uppercase; text-align: center; }
+        header { background: #fff; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #e5e5e5; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* GRELHA DE PRODUTOS */
-        .section-title { text-align: center; padding: 40px 0 20px; text-transform: uppercase; letter-spacing: 2px; }
-        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 0 4%; }
-        .product-card { background: #fff; border-radius: 4px; overflow: hidden; cursor: pointer; border: 1px solid #eee; }
+        /* GRELHA DE PRODUTOS (10 ARTIGOS) */
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .product-card { background: #fff; border-radius: 4px; overflow: hidden; cursor: pointer; border: 1px solid #eee; transition: 0.3s; }
+        .product-card:hover { transform: translateY(-5px); }
         .product-image { width: 100%; height: 250px; object-fit: cover; }
-        .product-info { padding: 12px; }
-        .product-price { font-weight: bold; margin-top: 5px; font-size: 16px; }
+        .product-info { padding: 12px; text-align: center; }
+        .product-price { font-weight: bold; margin-top: 5px; font-size: 16px; color: #000; }
 
-        /* SECÇÃO DE ARTIGOS (BLOG) */
-        .blog-section { padding: 40px 4%; background: #fff; margin-top: 40px; }
+        /* BLOG (10 ARTIGOS) */
+        .blog-section { background: #fff; margin-top: 40px; padding: 40px 5%; }
         .blog-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        .blog-post { border-bottom: 1px solid #eee; padding-bottom: 15px; }
-        .blog-post h3 { font-size: 16px; margin-bottom: 8px; color: #000; }
-        .blog-post p { font-size: 13px; color: #666; line-height: 1.6; }
+        .blog-item { border-left: 4px solid #000; padding: 15px; background: #fafafa; }
+        .blog-item h3 { font-size: 16px; margin-bottom: 8px; }
+        .blog-item p { font-size: 13px; color: #666; }
 
-        /* MODAL DE ZOOM */
-        .zoom-modal { 
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.9); z-index: 3000; justify-content: center; align-items: center; 
-        }
-        .zoom-viewer { 
-            width: 90%; max-width: 500px; height: 450px; background: #fff;
-            background-repeat: no-repeat; background-size: 250%; background-position: center;
-        }
+        /* MODAL DE ZOOM (LUPA) */
+        .zoom-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; justify-content: center; align-items: center; }
+        .zoom-box { width: 90%; max-width: 500px; background: #fff; position: relative; padding: 10px; }
+        .zoom-viewer { width: 100%; height: 450px; background-size: 250%; background-repeat: no-repeat; background-position: center; cursor: crosshair; }
+        .close-zoom { position: absolute; top: -45px; right: 0; color: #fff; font-size: 35px; cursor: pointer; }
 
-        /* BOTÃO FLUTUANTE WHATSAPP */
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25d366;
-            color: #FFF;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-            z-index: 4000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-        }
+        /* BOTÃO WHATSAPP FLUTUANTE */
+        .whatsapp-float { position: fixed; bottom: 25px; right: 25px; background: #25d366; color: #FFF; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 4000; text-decoration: none; }
 
         @media (min-width: 768px) {
             .product-grid { grid-template-columns: repeat(4, 1fr); }
-            .blog-grid { grid-template-columns: repeat(3, 1fr); }
+            .blog-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
 
-    <div class="promo-bar">ARKA ELEGANCY | ENVIOS EM MOÇAMBIQUE</div>
-
     <header>
         <div class="logo">Arka Elegancy</div>
+        <div style="font-size: 20px;">🛒</div>
     </header>
 
-    <!-- PRODUTOS -->
-    <section>
-        <h2 class="section-title">Coleção Premium</h2>
+    <div class="container">
+        <h2 style="text-align:center; margin: 30px 0; text-transform:uppercase;">Nova Coleção</h2>
         <div class="product-grid">
-            <div class="product-card" onclick="abrirLupa('https://unsplash.com', 'Vestido Silk Noite')">
-                <img src="https://unsplash.com" class="product-image">
-                <div class="product-info">
-                    <p>Vestido Silk Noite</p>
-                    <p class="product-price">4.200 MT</p>
-                </div>
-            </div>
-            <div class="product-card" onclick="abrirLupa('https://unsplash.com', 'Vestido Floral Verão')">
-                <img src="https://unsplash.com" class="product-image">
-                <div class="product-info">
-                    <p>Vestido Floral Verão</p>
-                    <p class="product-price">2.850 MT</p>
-                </div>
-            </div>
-            <!-- Mais produtos podem ser adicionados aqui -->
+            <!-- 10 Produtos em Meticais -->
+            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Vestido Silk')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Vestido Silk</p><p class="product-price">4.200 MT</p></div></div>
+            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Floral Summer')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Floral Summer</p><p class="product-price">2.800 MT</p></div></div>
+            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Conjunto Chic')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Conjunto Chic</p><p class="product-price">5.500 MT</p></div></div>
+            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Midi Casual')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Midi Casual</p><p class="product-price">3.400 MT</p></div></div>
+            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Top Cetim')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Top Cetim</p><p class="product-price">1.600 MT</p></div></div>
+            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Acessório Gold')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Acessório Gold</p><p class="product-price">900 MT</p></div></div>
+            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Blusa Soft')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Blusa Soft</p><p class="product-price">2.100 MT</p></div></div>
+            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Minimalist White')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Minimalist White</p><p class="product-price">3.800 MT</p></div></div>
+            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Saia Plissada')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Saia Plissada</p><p class="product-price">2.450 MT</p></div></div>
+            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Casaco Light')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Casaco Light</p><p class="product-price">4.900 MT</p></div></div>
         </div>
-    </section>
-
-    <!-- ARTIGOS DO BLOG -->
-    <section class="blog-section">
-        <h2 class="section-title">Dicas de Estilo</h2>
-        <div class="blog-grid">
-            <article class="blog-post">
-                <h3>Como combinar peças de luxo no dia-a-dia</h3>
-                <p>Aprenda a elevar o seu visual casual misturando texturas e acessórios de alta costura.</p>
-            </article>
-            <article class="blog-post">
-                <h3>Tendências: O regresso do cetim</h3>
-                <p>O brilho e a sofisticação do cetim estão de volta nas passarelas globais nesta temporada.</p>
-            </article>
-            <article class="blog-post">
-                <h3>Guia de Investimento em Peças Duráveis</h3>
-                <p>Descubra em quais artigos deve investir para criar um guarda-roupa intemporal e elegante.</p>
-            </article>
-        </div>
-    </section>
-
-    <!-- BOTÃO WHATSAPP -->
-    <!-- Substitua o número abaixo pelo seu número real no formato internacional (ex: 258...) -->
-    <a href="https://wa.me! Gostaria de saber mais sobre os artigos da Arka Elegancy." class="whatsapp-float" target="_blank">
-        <span>WP</span>
-    </a>
-
-    <!-- MODAL DE ZOOM -->
-    <div id="zoomModal" class="zoom-modal" onclick="fecharLupa()">
-        <div id="zoomViewer" class="zoom-viewer" onclick="event.stopPropagation()"></div>
     </div>
 
+    <!-- Secção de Blog (10 Artigos) -->
+    <div class="blog-section">
+        <h2 style="text-align:center; margin-bottom: 30px; text-transform:uppercase;">Blog Arka</h2>
+        <div class="blog-grid">
+            <div class="blog-item"><h3>1. Tendências em Maputo</h3><p>O que domina as ruas moçambicanas este ano.</p></div>
+            <div class="blog-item"><h3>2. Cuidados com o Tecido</h3><p>Dicas para manter as suas peças sempre novas.</p></div>
+            <div class="blog-item"><h3>3. Acessórios que Elevam</h3><p>Como transformar um look básico com acessórios.</p></div>
+            <div class="blog-item"><h3>4. Estilo Casual no Trabalho</h3><p>Equilíbrio perfeito para o ambiente profissional.</p></div>
+            <div class="blog-item"><h3>5. Cores do Verão</h3><p>As paletas que vão brilhar na próxima estação.</p></div>
+            <div class="blog-item"><h3>6. Guia de Tamanhos</h3><p>Como medir corretamente para não errar na compra.</p></div>
+            <div class="blog-item"><h3>7. Looks para Eventos</h3><p>Sugestões para casamentos e jantares de gala.</p></div>
+            <div class="blog-item"><h3>8. História da Arka</h3><p>Conheça a nossa missão na moda moçambicana.</p></div>
+            <div class="blog-item"><h3>9. Sustentabilidade</h3><p>Por que escolhemos materiais duradouros.</p></div>
+            <div class="blog-item"><h3>10. Bastidores da Coleção</h3><p>Como criamos as peças que você ama.</p></div>
+        </div>
+    </div>
+
+    <!-- Botão WhatsApp (Utilizando número de Moçambique 258) -->
+    <a href="https://wa.me Arka Elegancy! Quero saber mais sobre os artigos." class="whatsapp-float" target="_blank">WP</a>
+
+    <!-- Modal da Lupa -->
+    <div id="zoomModal" class="zoom-modal" onclick="fecharZoom()">
+        <div class="zoom-box" onclick="event.stopPropagation()">
+            <span class="close-zoom" onclick="fecharZoom()">&times;</span>
+            <div id="zoomViewer" class="zoom-viewer"></div>
+            <p style="text-align: center; font-size: 11px; margin-top: 8px; color: #888;">Mova o rato ou dedo para ampliar detalhes</p>
+        </div>
+    </div>
     <script>
-        function abrirLupa(imgUrl, nome) {
+        // Função para ativar a Lupa (Zoom)
+        function ativarZoom(imgUrl, nome) {
             const modal = document.getElementById('zoomModal');
             const viewer = document.getElementById('zoomViewer');
+            
             modal.style.display = "flex";
             viewer.style.backgroundImage = `url('${imgUrl}')`;
 
+            // Movimento da Lupa (Desktop)
             viewer.onmousemove = function(e) {
-                const posX = (e.offsetX / viewer.offsetWidth) * 100;
-                const posY = (e.offsetY / viewer.offsetHeight) * 100;
-                viewer.style.backgroundPosition = `${posX}% ${posY}%`;
+                const x = (e.offsetX / viewer.offsetWidth) * 100;
+                const y = (e.offsetY / viewer.offsetHeight) * 100;
+                viewer.style.backgroundPosition = `${x}% ${y}%`;
+            };
+
+            // Movimento para Telemóvel (Touch)
+            viewer.ontouchmove = function(e) {
+                e.preventDefault();
+                const touch = e.touches;
+                const rect = viewer.getBoundingClientRect();
+                const x = ((touch.clientX - rect.left) / rect.width) * 100;
+                const y = ((touch.clientY - rect.top) / rect.height) * 100;
+                viewer.style.backgroundPosition = `${x}% ${y}%`;
             };
         }
 
-        function fecharLupa() {
+        function fecharZoom() {
             document.getElementById('zoomModal').style.display = "none";
         }
     </script>
