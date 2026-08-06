@@ -3,129 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arka Elegancy | Sofisticação em Meticais</title>
+    <title>Arka Elegancy | Luxo e Sofisticação</title>
     <style>
-        /* CONFIGURAÇÕES GERAIS */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
-        body { background-color: #f7f7f7; color: #222; }
+        /* CONFIGURAÇÕES GERAIS E CORES */
+        :root {
+            --preto-profundo: #0a0a0a;
+            --preto-card: #141414;
+            --dourado-luxo: #D4AF37;
+            --branco-puro: #ffffff;
+            --cor-whatsapp: #25d366;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Playfair Display', serif; }
+        body { background-color: var(--preto-profundo); color: var(--branco-puro); line-height: 1.6; }
+
+        /* CABEÇALHO E MARCA */
+        .promo-bar { background: var(--dourado-luxo); color: #000; text-align: center; padding: 10px; font-size: 11px; font-weight: bold; }
+        header { 
+            background: rgba(20, 20, 20, 0.98); 
+            position: sticky; top: 0; z-index: 1000; 
+            border-bottom: 1px solid var(--dourado-luxo); 
+            padding: 15px 5%; display: flex; justify-content: space-between; 
+        }
         
-        /* CABEÇALHO */
-        header { background: #fff; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #e5e5e5; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 24px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; }
+        .logo { 
+            font-size: 28px; font-weight: 900; text-transform: uppercase;
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
 
-        /* GRELHA DE PRODUTOS (10 ARTIGOS) */
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        .product-card { background: #fff; border-radius: 4px; overflow: hidden; cursor: pointer; border: 1px solid #eee; transition: 0.3s; }
-        .product-card:hover { transform: translateY(-5px); }
-        .product-image { width: 100%; height: 250px; object-fit: cover; }
-        .product-info { padding: 12px; text-align: center; }
-        .product-price { font-weight: bold; margin-top: 5px; font-size: 16px; color: #000; }
+        /* VITRINE DE PRODUTOS (Resumo) */
+        .container { max-width: 1200, margin: 0 auto; padding: 20px; }
+        .titulo-secao { text-align: center; margin: 50px 0 30px; color: var(--dourado-luxo); text-transform: uppercase; }
+        .grade-produtos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .cartao-produto { background: var(--preto-card); border: 1px solid #222; transition: 0.4s; }
+        .cartao-produto:hover { border-color: var(--dourado-luxo); transform: translateY(-5px); }
+        .imagem-produto { width: 100%; height: 250px; object-fit: cover; }
+        .info-produto { padding: 15px; text-align: center; }
+        .preco-produto { color: var(--dourado-luxo); font-weight: bold; }
 
-        /* BLOG (10 ARTIGOS) */
-        .blog-section { background: #fff; margin-top: 40px; padding: 40px 5%; }
-        .blog-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        .blog-item { border-left: 4px solid #000; padding: 15px; background: #fafafa; }
-        .blog-item h3 { font-size: 16px; margin-bottom: 8px; }
-        .blog-item p { font-size: 13px; color: #666; }
+        /* BLOG (Resumo) */
+        .secao-blog { margin-top: 60px; padding: 40px 5%; background: #0d0d0d; }
+        .grade-blog { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .item-blog { padding: 20px; background: var(--preto-card); border-left: 3px solid var(--dourado-luxo); }
+        .item-blog h3 { color: #F5D97A; margin-bottom: 10px; }
 
-        /* MODAL DE ZOOM (LUPA) */
-        .zoom-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; justify-content: center; align-items: center; }
-        .zoom-box { width: 90%; max-width: 500px; background: #fff; position: relative; padding: 10px; }
-        .zoom-viewer { width: 100%; height: 450px; background-size: 250%; background-repeat: no-repeat; background-position: center; cursor: crosshair; }
-        .close-zoom { position: absolute; top: -45px; right: 0; color: #fff; font-size: 35px; cursor: pointer; }
+        /* WHATSAPP */
+        .btn-whatsapp { 
+            position: fixed; bottom: 30px; right: 30px; background: var(--cor-whatsapp); 
+            width: 60px; height: 60px; border-radius: 50%; display: flex; 
+            justify-content: center; align-items: center; z-index: 4000;
+        }
 
-        /* BOTÃO WHATSAPP FLUTUANTE */
-        .whatsapp-float { position: fixed; bottom: 25px; right: 25px; background: #25d366; color: #FFF; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 4000; text-decoration: none; }
-
+        /* RESPONSIVO */
         @media (min-width: 768px) {
-            .product-grid { grid-template-columns: repeat(4, 1fr); }
-            .blog-grid { grid-template-columns: repeat(2, 1fr); }
+            .grade-produtos { grid-template-columns: repeat(4, 1fr); }
+            .grade-blog { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
 
+    <div class="promo-bar">ARKA ELEGANCY | ENVIOS EM MOÇAMBIQUE</div>
+
     <header>
         <div class="logo">Arka Elegancy</div>
-        <div style="font-size: 20px;">🛒</div>
     </header>
 
     <div class="container">
-        <h2 style="text-align:center; margin: 30px 0; text-transform:uppercase;">Nova Coleção</h2>
-        <div class="product-grid">
-            <!-- 10 Produtos em Meticais -->
-            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Vestido Silk')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Vestido Silk</p><p class="product-price">4.200 MT</p></div></div>
-            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Floral Summer')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Floral Summer</p><p class="product-price">2.800 MT</p></div></div>
-            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Conjunto Chic')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Conjunto Chic</p><p class="product-price">5.500 MT</p></div></div>
-            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Midi Casual')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Midi Casual</p><p class="product-price">3.400 MT</p></div></div>
-            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Top Cetim')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Top Cetim</p><p class="product-price">1.600 MT</p></div></div>
-            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Acessório Gold')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Acessório Gold</p><p class="product-price">900 MT</p></div></div>
-            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Blusa Soft')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Blusa Soft</p><p class="product-price">2.100 MT</p></div></div>
-            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Minimalist White')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Minimalist White</p><p class="product-price">3.800 MT</p></div></div>
-            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Saia Plissada')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Saia Plissada</p><p class="product-price">2.450 MT</p></div></div>
-            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Casaco Light')"><img src="https://unsplash.com" class="product-image"><div class="product-info"><p>Casaco Light</p><p class="product-price">4.900 MT</p></div></div>
+        <h2 class="titulo-secao">Coleção de Luxo</h2>
+        <div class="grade-produtos">
+            <!-- Exemplo de Produto (Repetir 10x conforme estruturado acima) -->
+            <div class="cartao-produto">
+                <img src="https://unsplash.com" class="imagem-produto">
+                <div class="info-produto"><p>Vestido Silk Noir</p><p class="preco-produto">4.500 MT</p></div>
+            </div>
+            <!-- Adicionar mais cartões aqui -->
         </div>
     </div>
 
-    <!-- Secção de Blog (10 Artigos) -->
-    <div class="blog-section">
-        <h2 style="text-align:center; margin-bottom: 30px; text-transform:uppercase;">Blog Arka</h2>
-        <div class="blog-grid">
-            <div class="blog-item"><h3>1. Tendências em Maputo</h3><p>O que domina as ruas moçambicanas este ano.</p></div>
-            <div class="blog-item"><h3>2. Cuidados com o Tecido</h3><p>Dicas para manter as suas peças sempre novas.</p></div>
-            <div class="blog-item"><h3>3. Acessórios que Elevam</h3><p>Como transformar um look básico com acessórios.</p></div>
-            <div class="blog-item"><h3>4. Estilo Casual no Trabalho</h3><p>Equilíbrio perfeito para o ambiente profissional.</p></div>
-            <div class="blog-item"><h3>5. Cores do Verão</h3><p>As paletas que vão brilhar na próxima estação.</p></div>
-            <div class="blog-item"><h3>6. Guia de Tamanhos</h3><p>Como medir corretamente para não errar na compra.</p></div>
-            <div class="blog-item"><h3>7. Looks para Eventos</h3><p>Sugestões para casamentos e jantares de gala.</p></div>
-            <div class="blog-item"><h3>8. História da Arka</h3><p>Conheça a nossa missão na moda moçambicana.</p></div>
-            <div class="blog-item"><h3>9. Sustentabilidade</h3><p>Por que escolhemos materiais duradouros.</p></div>
-            <div class="blog-item"><h3>10. Bastidores da Coleção</h3><p>Como criamos as peças que você ama.</p></div>
+    <div class="secao-blog">
+        <h2 class="titulo-secao">Conselhos de Estilo</h2>
+        <div class="grade-blog">
+            <!-- Exemplo de Artigo (Repetir 10x) -->
+            <div class="item-blog"><h3>O Poder do Preto e Dourado</h3><p>Sofisticação eterna.</p></div>
+            <!-- Adicionar mais artigos aqui -->
         </div>
     </div>
 
-    <!-- Botão WhatsApp (Utilizando número de Moçambique 258) -->
-    <a href="https://wa.me Arka Elegancy! Quero saber mais sobre os artigos." class="whatsapp-float" target="_blank">WP</a>
-
-    <!-- Modal da Lupa -->
-    <div id="zoomModal" class="zoom-modal" onclick="fecharZoom()">
-        <div class="zoom-box" onclick="event.stopPropagation()">
-            <span class="close-zoom" onclick="fecharZoom()">&times;</span>
-            <div id="zoomViewer" class="zoom-viewer"></div>
-            <p style="text-align: center; font-size: 11px; margin-top: 8px; color: #888;">Mova o rato ou dedo para ampliar detalhes</p>
-        </div>
-    </div>
+    <a href="#" class="btn-whatsapp">WP</a>
     <script>
-        // Função para ativar a Lupa (Zoom)
-        function ativarZoom(imgUrl, nome) {
-            const modal = document.getElementById('zoomModal');
-            const viewer = document.getElementById('zoomViewer');
-            
-            modal.style.display = "flex";
-            viewer.style.backgroundImage = `url('${imgUrl}')`;
+        /* =========================================================
+   PARTE 2: LÓGICA E COMPORTAMENTO (JAVASCRIPT)
+   Projeto: Arka Elegancy
+   Funcionalidades: Zoom de Produto (Lupa) e Vendas via WhatsApp
+   ========================================================= */
 
-            // Movimento da Lupa (Desktop)
-            viewer.onmousemove = function(e) {
-                const x = (e.offsetX / viewer.offsetWidth) * 100;
-                const y = (e.offsetY / viewer.offsetHeight) * 100;
-                viewer.style.backgroundPosition = `${x}% ${y}%`;
-            };
+/**
+ * Função para ativar a visualização de detalhes (Lupa)
+ * @param {string} imgUrl - URL da imagem do produto
+ * @param {string} nome - Nome do produto para identificação
+ */
+function abrirLupa(imgUrl, nome) {
+    const modal = document.getElementById('zoomModal');
+    const viewer = document.getElementById('zoomViewer');
+    
+    if (modal && viewer) {
+        modal.style.display = "flex";
+        viewer.style.backgroundImage = `url('${imgUrl}')`;
+        console.log("Arka Elegancy - Inspecionando: " + nome);
+    }
 
-            // Movimento para Telemóvel (Touch)
-            viewer.ontouchmove = function(e) {
-                e.preventDefault();
-                const touch = e.touches;
-                const rect = viewer.getBoundingClientRect();
-                const x = ((touch.clientX - rect.left) / rect.width) * 100;
-                const y = ((touch.clientY - rect.top) / rect.height) * 100;
-                viewer.style.backgroundPosition = `${x}% ${y}%`;
-            };
-        }
+    /**
+     * Lógica de Zoom para Desktop (Movimento do Rato)
+     * Ajusta a posição do fundo da imagem com base nas coordenadas do cursor
+     */
+    viewer.onmousemove = function(e) {
+        const x = (e.offsetX / viewer.offsetWidth) * 100;
+        const y = (e.offsetY / viewer.offsetHeight) * 100;
+        viewer.style.backgroundPosition = `${x}% ${y}%`;
+    };
 
-        function fecharZoom() {
-            document.getElementById('zoomModal').style.display = "none";
-        }
-    </script>
+    /**
+     * Suporte para Dispositivos Móveis (Touch)
+     * Garante que o efeito de lupa funcione ao deslizar o dedo em telemóveis
+     */
+    viewer.ontouchmove = function(e) {
+        e.preventDefault(); // Evita o scroll lateral durante o zoom
+        const touch = e.touches;
+        const rect = viewer.getBoundingClientRect();
+        const x = ((touch.clientX - rect.left) / rect.width) * 100;
+        const y = ((touch.clientY - rect.top) / rect.height) * 100;
+        viewer.style.backgroundPosition = `${x}% ${y}%`;
+    };
+}
+
+/**
+ * Função para encerrar o modo de zoom
+ */
+function fecharLupa() {
+    const modal = document.getElementById('zoomModal');
+    if (modal) {
+        modal.style.display = "none";
+    }
+}
+
+/**
+ * Eventos Globais: Fecha ao clicar fora ou pressionar 'Escape'
+ */
+window.onclick = function(event) {
+    const modal = document.getElementById('zoomModal');
+    if (event.target == modal) fecharLupa();
+};
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === "Escape") fecharLupa();
+});
+
+// Mensagem de Inicialização para a Reivenstudio
+console.log("Arka Elegancy: Sistema de interatividade luxo carregado.");
+</script>
+
 </body>
 </html>
