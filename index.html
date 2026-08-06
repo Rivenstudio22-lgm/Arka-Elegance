@@ -3,54 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arka Elegancy | Sofisticação e Estilo</title>
+    <title>Arka Elegance Moçambique | Catálogo Oficial de Preços</title>
     <style>
-        /* CORES LUXO: PRETO E DOURADO */
         :root {
-            --preto-fundo: #0a0a0a;
-            --preto-suave: #111827;
-            --dourado: #D4AF37;
-            --dourado-brilho: #F5D97A;
+            --preto-fundo: #070707;
+            --preto-card: #121212;
+            --dourado: #cb9b51; 
+            --dourado-brilho: #fcf6ba;
             --branco: #ffffff;
             --wa-verde: #25d366;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
-        body { background-color: var(--preto-fundo); color: var(--branco); line-height: 1.6; }
+        body { background-color: var(--preto-fundo); color: var(--branco); line-height: 1.6; overflow-x: hidden; }
 
-        /* CABEÇALHO COM LOGOTIPO */
-        header { background: var(--preto-suave); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--dourado); padding: 15px 5%; }
-        .header-main { display: flex; justify-content: space-between; align-items: center; }
-        
-        /* ESPAÇO PARA O LOGOTIPO */
-        .logo-container img { height: 60px; max-width: 200px; object-fit: contain; }
-        
+        /* CABEÇALHO */
+        .promo-bar { background: var(--dourado); color: #000; text-align: center; padding: 8px; font-size: 11px; font-weight: bold; letter-spacing: 1px; }
+        header { background: rgba(18, 18, 18, 0.95); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--dourado); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; }
+        .logo-container img { height: 60px; max-width: 180px; object-fit: contain; }
+        .contact-top { color: var(--dourado); font-weight: bold; font-size: 14px; }
+
         /* VITRINE DE PRODUTOS */
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        .section-title { text-align: center; margin: 40px 0; text-transform: uppercase; color: var(--dourado); letter-spacing: 4px; }
+        .section-header { text-align: center; margin: 40px 0 20px; }
+        .section-header h2 { text-transform: uppercase; color: var(--dourado); letter-spacing: 3px; font-size: 24px; border-bottom: 2px solid var(--dourado); display: inline-block; padding-bottom: 5px; }
+        
         .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        .product-card { background: var(--preto-suave); border: 1px solid #333; border-radius: 4px; overflow: hidden; cursor: pointer; transition: 0.4s; }
-        .product-card:hover { border-color: var(--dourado); }
-        .product-img { width: 100%; height: 280px; object-fit: cover; border-bottom: 1px solid var(--dourado); }
+        .product-card { background: var(--preto-card); border: 1px solid #222; border-radius: 4px; overflow: hidden; cursor: pointer; transition: 0.4s; }
+        .product-card:hover { border-color: var(--dourado); transform: translateY(-5px); }
+        .product-img { width: 100%; height: 250px; object-fit: cover; border-bottom: 1px solid var(--dourado); }
         .product-info { padding: 15px; text-align: center; }
-        .product-price { color: var(--dourado); font-weight: bold; font-size: 18px; }
+        .product-info p { font-size: 14px; color: #ccc; margin-bottom: 5px; text-transform: uppercase; font-weight: bold; }
+        .product-price { color: var(--dourado-brilho); font-weight: bold; font-size: 18px; letter-spacing: 1px; }
 
-        /* BLOG LUXO (CONSELHOS DE ESTILO) */
-        .blog-section { background: var(--preto-suave); margin-top: 50px; padding: 50px 5%; border-top: 2px solid var(--dourado); }
-        .blog-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        .blog-item { border-left: 5px solid var(--dourado); padding: 20px; background: #050505; }
-        .blog-item h3 { color: var(--dourado-brilho); margin-bottom: 10px; }
+        .kit-badge { background: #8a1a1a; color: #fff; font-size: 10px; padding: 2px 8px; border-radius: 3px; font-weight: bold; display: inline-block; margin-bottom: 5px; }
 
-        /* MODAL DE ZOOM (LUPA) */
-        .zoom-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; justify-content: center; align-items: center; }
-        .zoom-box { width: 90%; max-width: 550px; background: var(--preto-suave); padding: 15px; border: 2px solid var(--dourado); position: relative; }
+        /* CONTENTOR ONDE O JAVASCRIPT IRÁ INJETAR O BLOG */
+        .blog-section { margin-top: 60px; padding: 50px 5%; background: #0b0b0b; border-top: 1px solid #1a1a1a; }
+        .blog-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
+        .blog-item { padding: 25px; background: var(--preto-card); border-left: 4px solid var(--dourado); }
+        .blog-item h3 { color: var(--dourado-brilho); margin-bottom: 12px; font-size: 17px; text-transform: uppercase; }
+        .blog-item p { color: #aaa; font-size: 14px; }
+
+        /* MODAL ZOOM */
+        .zoom-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 3000; justify-content: center; align-items: center; }
+        .zoom-box { width: 90%; max-width: 550px; background: #111; padding: 15px; border: 1px solid var(--dourado); position: relative; }
         .zoom-viewer { width: 100%; height: 480px; background-size: 250%; background-repeat: no-repeat; background-position: center; cursor: crosshair; }
         .close-zoom { position: absolute; top: -50px; right: 0; color: var(--dourado); font-size: 40px; cursor: pointer; }
 
-        /* BOTÃO WHATSAPP FLUTUANTE */
-        .whatsapp-float {
-            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; background-color: var(--wa-verde); color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 4000; display: flex; align-items: center; justify-content: center; text-decoration: none; border: 2px solid var(--dourado);
-        }
+        /* WHATSAPP FLUTUANTE */
+        .btn-whatsapp { position: fixed; bottom: 30px; right: 30px; background: var(--wa-verde); color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 32px; z-index: 4000; text-decoration: none; box-shadow: 0 0 20px rgba(37, 211, 102, 0.5); border: 2px solid var(--dourado); }
 
         @media (min-width: 768px) {
             .product-grid { grid-template-columns: repeat(4, 1fr); }
@@ -60,86 +62,93 @@
 </head>
 <body>
 
+    <div class="promo-bar">LINHA EXCLUSIVA LUKART® | GARANTIA MÍNIMA DE 3 ANOS | ENTREGA AO DOMICÍLIO</div>
+
     <header>
-        <div class="header-main">
-            <div class="logo-container">
-                <!-- COLOQUE O LINK DO SEU LOGOTIPO AQUI -->
-                <img src=".png" alt="Arka Elegancy">
-            </div>
-            <div style="color: var(--dourado); font-size: 14px; font-weight: bold;">
-                849343649
-            </div>
+        <div class="logo-container">
+            <img src="assets/logo-arka.png" alt="Arka Elegance Moçambique">
         </div>
+        <div class="contact-top">Suporte: 849343649</div>
     </header>
 
     <div class="container">
-        <h2 class="section-title">Coleção Premium</h2>
+        <div class="section-header"><h2>Linha Masculina</h2></div>
         <div class="product-grid">
-            <!-- 10 PRODUTOS (Exemplos) -->
-            <div class="product-card" onclick="ativarZoom('https://unsplash.com', 'Vestido Silk Noir')">
-                <img src="https://unsplash.com" class="product-img">
-                <div class="product-info"><p>Vestido Silk Noir</p><p class="product-price">4.500 MT</p></div>
+            <div class="product-card" onclick="abrirLupa('assets/carteira-masculina.jpg', 'Carteira Masculina Premium')">
+                <img src="assets/carteira-masculina.jpg" class="product-img">
+                <div class="product-info"><p>Carteira Masculina Premium</p><p class="product-price">2.499 MT</p></div>
             </div>
-            <!-- ... Repetir para os 10 produtos ... -->
+            <div class="product-card" onclick="abrirLupa('assets/cinto-premium.jpg', 'Cinto Premium')">
+                <img src="assets/cinto-premium.jpg" class="product-img">
+                <div class="product-info"><p>Cinto Premium</p><p class="product-price">1.799 MT</p></div>
+            </div>
+            <div class="product-card" onclick="abrirLupa('assets/bracelete.jpg', 'Bracelete para Relógio')">
+                <img src="assets/bracelete.jpg" class="product-img">
+                <div class="product-info"><p>Bracelete para Relógio</p><p class="product-price">1.499 MT</p></div>
+            </div>
+            <div class="product-card" onclick="abrirLupa('assets/porta-cartoes-p.jpg', 'Porta-Cartões Premium')">
+                <img src="assets/porta-cartoes-p.jpg" class="product-img">
+                <div class="product-info"><p>Porta-Cartões Premium</p><p class="product-price">1.499 MT</p></div>
+            </div>
+            <div class="product-card" onclick="abrirLupa('assets/porta-cartoes-s.jpg', 'Porta-Cartões Simples')">
+                <img src="assets/porta-cartoes-s.jpg" class="product-img">
+                <div class="product-info"><p>Porta-Cartões Simples</p><p class="product-price">1.199 MT</p></div>
+            </div>
+            <div class="product-card" onclick="abrirLupa('assets/chaveiro-m.jpg', 'Chaveiro em Pele')">
+                <img src="assets/chaveiro-m.jpg" class="product-img">
+                <div class="product-info"><p>Chaveiro em Pele</p><p class="product-price">699 MT</p></div>
+            </div>
+        </div>
+
+        <div class="section-header"><h2>Linha Feminina</h2></div>
+        <div class="product-grid">
+            <div class="product-card" onclick="abrirLupa('assets/carteira-feminina.jpg', 'Carteira Feminina Premium')">
+                <img src="assets/carteira-feminina.jpg" class="product-img">
+                <div class="product-info"><p>Carteira Feminina Premium</p><p class="product-price">2.799 MT</p></div>
+            </div>
+            <div class="product-card" onclick="abrirLupa('assets/cinto-fino.jpg', 'Cinto Fino')">
+                <img src="assets/cinto-fino.jpg" class="product-img">
+                <div class="product-info"><p>Cinto Fino</p><p class="product-price">1.299 MT</p></div>
+            </div>
+            <div class="product-card" onclick="abrirLupa('assets/chaveiro-f.jpg', 'Chaveiro em Pele')">
+                <img src="assets/chaveiro-f.jpg" class="product-img">
+                <div class="product-info"><p>Chaveiro em Pele</p><p class="product-price">699 MT</p></div>
+            </div>
+        </div>
+
+        <div class="section-header"><h2>Kits Especiais</h2></div>
+        <div class="product-grid">
+            <div class="product-card" onclick="abrirLupa('assets/kit-gentleman.jpg', 'Kit Gentleman')">
+                <img src="assets/kit-gentleman.jpg" class="product-img">
+                <div class="product-info">
+                    <span class="kit-badge">KIT COMPLETO</span>
+                    <p>Kit Gentleman (Carteira+Cinto+Chaveiro)</p>
+                    <p class="product-price">4.499 MT</p>
+                </div>
+            </div>
+            <div class="product-card" onclick="abrirLupa('assets/kit-elegance.jpg', 'Kit Elegance Feminino')">
+                <img src="assets/kit-elegance.jpg" class="product-img">
+                <div class="product-info">
+                    <span class="kit-badge">KIT COMPLETO</span>
+                    <p>Kit Elegance Feminino</p>
+                    <p class="product-price">4.799 MT</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="blog-section">
-        <h2 class="section-title">Blog Arka Elegancy</h2>
-        <div class="blog-grid">
-            <div class="blog-item"><h3>Tendências 2026: Luxo Discreto</h3><p>O minimalismo e os tons neutros dominam a moda sofisticada este ano.</p></div>
-            <div class="blog-item"><h3>Cuidados com Tecidos Nobres</h3><p>Mantenha a elegância das suas peças com estas dicas de conservação.</p></div>
-        </div>
-    </div>
+    <!-- O CONTEÚDO DESTA SECÇÃO É GERADO AUTOMATICAMENTE PELO SCRIPT.JS -->
+    <div id="dynamicBlogSection" class="blog-section"></div>
 
-    <!-- BOTÃO WHATSAPP ATUALIZADO -->
-    <a href="https://wa.me Arka Elegancy! Quero saber mais sobre os artigos." class="whatsapp-float" target="_blank">
-        💬
-    </a>
+    <a href="https://wa.me Arka Elegance Moçambique! Gostaria de fazer uma encomenda baseada no Catálogo Oficial de Preços." class="btn-whatsapp" target="_blank">💬</a>
 
-    <!-- MODAL DE LUPA -->
-    <div id="zoomModal" class="zoom-modal" onclick="fecharZoom()">
+    <div id="zoomModal" class="zoom-modal" onclick="fecharLupa()">
         <div class="zoom-box" onclick="event.stopPropagation()">
-            <span class="close-zoom" onclick="fecharZoom()">&times;</span>
+            <span class="close-zoom" onclick="fecharLupa()">&times;</span>
             <div id="zoomViewer" class="zoom-viewer"></div>
-            <p style="text-align: center; font-size: 11px; margin-top: 8px; color: #888;">Mova o rato/dedo para ampliar detalhes</p>
         </div>
     </div>
-    <script>
-        // Função para ativar a Lupa (Zoom)
-        function ativarZoom(imgUrl, nome) {
-            const modal = document.getElementById('zoomModal');
-            const viewer = document.getElementById('zoomViewer');
-            
-            modal.style.display = "flex";
-            viewer.style.backgroundImage = `url('${imgUrl}')`;
 
-            // Movimento da Lupa (Desktop)
-            viewer.onmousemove = function(e) {
-                const x = (e.offsetX / viewer.offsetWidth) * 100;
-                const y = (e.offsetY / viewer.offsetHeight) * 100;
-                viewer.style.backgroundPosition = `${x}% ${y}%`;
-            };
-
-            // Suporte para Telemóvel (Touch)
-            viewer.ontouchmove = function(e) {
-                e.preventDefault();
-                const touch = e.touches;
-                const rect = viewer.getBoundingClientRect();
-                const x = ((touch.clientX - rect.left) / rect.width) * 100;
-                const y = ((touch.clientY - rect.top) / rect.height) * 100;
-                viewer.style.backgroundPosition = `${x}% ${y}%`;
-            };
-        }
-
-        function fecharZoom() {
-            document.getElementById('zoomModal').style.display = "none";
-        }
-
-        // Fechar ao pressionar Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === "Escape") fecharZoom();
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
